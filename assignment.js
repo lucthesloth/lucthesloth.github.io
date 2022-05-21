@@ -109,7 +109,7 @@ function cell3_1(){
 }
 function cell3_2(){
     if (frameCount < 2) {
-        dataStorage.cell3_2 = {velX: Math.random() * 5, velY: Math.random() * 5, pos: getCellCenter(1,2)};
+        dataStorage.cell3_2 = {velX: Math.random() * 5 - 2.5, velY: Math.random() * 5 - 2.5, pos: getCellCenter(1,2)};
     }
     fillCell(1,2, "#7ede98")
     let [a,b] = getCellBoundaries(1,2);
@@ -140,13 +140,14 @@ function cell3_3(){
     for (const particle of particles) {
         particle.pos.add(particle.vel);
         fill(`rgba(0,0,0,${map(particle.pos.y, a.y, b.y, 1, 0)})`);
-        stroke(0)
+        noStroke()
         circle(particle.pos.x, particle.pos.y, 10);
         if (particle.pos.y > b.y-10) {
             particles.splice(particles.indexOf(particle), 1);
         } else {
             particle.vel.add(negativeForce);
         }
+        stroke(0)
     }
 }
 //function to get vector from x distance from the center in a radius
